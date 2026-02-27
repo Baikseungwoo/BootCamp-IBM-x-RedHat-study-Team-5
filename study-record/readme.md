@@ -9,7 +9,7 @@
 ### 승우
 | 날짜 | 링크 |
 |----|----|
-| 2월 27일 | [Python 함수/lambda/입력/map/파일/클래스]("(https://velog.io/@swbaik01/Python)") | 
+| 2월 27일 | [Python 함수/lambda/입력/map/파일/클래스]("https://velog.io/@swbaik01/Python") | 
 
 <br>
 
