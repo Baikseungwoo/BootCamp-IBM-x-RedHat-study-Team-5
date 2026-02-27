@@ -19,7 +19,6 @@ for  learning python and Mini Project
 <td><img src="https://avatars.githubusercontent.com/u/92345780?v=4" style="width:95%;"></td>
 <td><img src="https://avatars.githubusercontent.com/u/92345780?v=4" style="width:95%;"></td>
 <td><img src="https://avatars.githubusercontent.com/u/92345780?v=4" style="width:95%;"></td>
-<td><img src="https://avatars.githubusercontent.com/u/92345780?v=4" style="width:95%;"></td>
 </tr>
 
 
