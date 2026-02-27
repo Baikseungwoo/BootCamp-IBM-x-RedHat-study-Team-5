@@ -53,6 +53,7 @@ for  learning python and Mini Project
 
 ### 스터디 활동 정리
 
+<br>
 2026.02.27 (목)
 
 #### Python - 스레드 vs 비동기 개념 정리 
