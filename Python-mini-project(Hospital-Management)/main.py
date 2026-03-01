@@ -2,6 +2,27 @@ from Exception import UnexepectedNum
 from Exception import UnexistUser
 from User import User
 
+
+def main():
+    while True:
+        try:
+            print("=======================================")
+            print("병원 운영 관리 시스템에 접속하셨습니다.")
+            print("=======================================")
+            print("**로그인을 원하시면 \"1\"을 입력하시고, 회원가입을 원하시면 \"2\"을 입력하세요.**\n")
+
+            sign = input("1. 로그인\n2. 회원가입\n")
+            
+            if(sign=="1"):
+                logIn()
+            elif(sign=="2"):
+                register()
+            else:
+                raise UnexepectedNum()
+
+        except UnexepectedNum as e:
+            print(e)
+
 def logIn():
     while True:
         try:
@@ -29,11 +50,14 @@ def register():
             name = input("이름을 입력하세요: ")
             password = input("비밀번호를 입력하세요: ")
             author = input("권한을 입력하세요.(의사: 0, 그외: 1)")
-            if author not in ["1", "2"]:
+            if author not in ["0", "1"]:
+                raise UnexepectedNum()
+            field = input("분야를 입력하세요. (\"0\"/\"1\"/\"2\"/\"3\" (없음/외과/내과/정신과))")
+            if field not in ["0","1","2","3","4"]:
                 raise UnexepectedNum()
             user = User(name, password)
-            user.userRegister(author, )
-            print("로그인에 성공하였습니다!!!!")
+            user.userRegister(author,field)
+            print("회원가입을 완료했습니다! 로그인을 해주십시오!!")
             main()
         except UnexepectedNum as e:
             print(e)
@@ -48,15 +72,15 @@ def mainMenu():
             print("**접속을 원하는 서비스의 메뉴번호를 입력하세요.**")
             n=input("1. 환자 정보\n2. 진료접수\n3. 예약\n4.수납\n5. 진료기록/처방전(의사만 접근가능)\n6. 로그아웃(처음부터 다시 시작)\n")
             if(n=="1"):
-                
+                patient()
             elif(n=="2"):
-                pass
+                checkIn()
             elif(n=="3"):
-                pass
+                booking()
             elif(n=="4"):
-                pass
+                billing()
             elif(n=="5"):
-                pass
+                medicalChart()
             elif(n=="6"):
                 m=input("정말 나가겠습니까??\nyes -> 0\n")
                 if(m=="0"):
@@ -67,25 +91,19 @@ def mainMenu():
         except UnexepectedNum as e:
             print(e)
 
+def patient():
+    pass
 
-def main():
-    while True:
-        try:
-            print("=======================================")
-            print("병원 운영 관리 시스템에 접속하셨습니다.")
-            print("=======================================")
-            print("**로그인을 원하시면 \"1\"을 입력하시고, 회원가입을 원하시면 \"2\"을 입력하세요.**\n")
+def checkIn():
+    pass
 
-            sign = input("1. 로그인\n2. 회원가입\n")
-            
-            if(sign=="1"):
-                logIn()
-            elif(sign=="2"):
-                register()
-            else:
-                raise UnexepectedNum()
+def booking():
+    pass
 
-        except UnexepectedNum as e:
-            print(e)
+def billing():
+    pass
+
+def medicalChart():
+    pass
 
 main()
