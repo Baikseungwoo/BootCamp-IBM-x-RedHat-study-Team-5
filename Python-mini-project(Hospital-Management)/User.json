@@ -1,7 +1,29 @@
+[
+    {
+        "name":"백승우", 
+        "password": "1234", 
+        "author": "0" , 
+        "field": "1"
+    },
 
-{
-    "name":"승우", 
-    "password": 1234, 
-    "author": "0" , 
-    "field": "1"
-}
+    {
+        "name":"개똥이", 
+        "password": "1234", 
+        "author": "0" , 
+        "field": "1"
+    },
+
+    {
+        "name":"홍길동", 
+        "password": "1234", 
+        "author": "0" , 
+        "field": "1"
+    },
+
+    {
+        "name": "김철수",
+        "password": "1234",
+        "author": "1",
+        "field": "0"
+    }
+]
