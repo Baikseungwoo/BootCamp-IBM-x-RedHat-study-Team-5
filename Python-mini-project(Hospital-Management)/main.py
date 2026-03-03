@@ -188,7 +188,7 @@ def booking():
             time=input("예약을 원하는 시간대를 입력하세요\n(오전/오후)중에 선택하여 입력하세요.\n")
             if time not in ["오전","오후"]:
                 raise UnexepectedTime()
-            yes=fingBookingValid(date,time)
+            yes=findBookingValid(date,time)
             if(yes):
                 name=input("예약을 원하는 환자의 이름을 입력하세요.\n")
                 makeBooking(date,time,name)
@@ -200,7 +200,7 @@ def booking():
         except UnexepectedTime as e:
             print(e)
 
-def fingBookingValid(date, time):
+def findBookingValid(date, time):
     ##books라는 리스트에서 date에 해당되는 인덱스의 딕셔너리 안에 time(오전/오후)에 해당되는 value가 빈 문자열인지 확인하는 함수
     ##가능하면 가능하다고 print하고 True반환, 만약에 값이 이미 있는 상태면 불가능하다고 print하고 False 반환
     pass
@@ -309,7 +309,8 @@ def medicalReport():
 
 
 
-## 메인 실행문
+################### 메인 실행문 ###########################################
+
 books=[]
 
 for i in range(1,32):
