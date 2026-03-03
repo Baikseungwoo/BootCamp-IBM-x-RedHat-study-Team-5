@@ -6,6 +6,10 @@ class UnexepectedTime(Exception):
     def __init__(self):
         super().__init__('유효하지 않은 입력입니다 제대로된 시간대(오전/오후)를 입력하세요.')
 
+class UnexistPrescription(Exception):
+    def __init__(self):
+        super().__init__('해당 환자의 처방전이 존재하지 않습니다.')
+
 
 class UnexistUser(Exception):
     def __init__(self):

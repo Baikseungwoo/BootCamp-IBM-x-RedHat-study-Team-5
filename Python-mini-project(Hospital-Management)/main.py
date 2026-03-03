@@ -3,8 +3,10 @@ from Exception import UnexistUser
 from Exception import UnexistPatient
 from Exception import UnexistDoctor
 from Exception import UnexepectedTime
+from Exception import UnexistPrescription
 from User import User
 from Patient import Patient
+from Prescription import Prescription
 
 
 def main():
@@ -84,7 +86,7 @@ def mainMenu():
             elif(n=="4"):
                 billing()
             elif(n=="5"):
-                medicalChart()
+                medicalReport()
             elif(n=="6"):
                 m=input("정말 나가시겠습니까?? \n나가시려면 \"yes\"를 입력하세요.\n")
                 if(m=="yes"):
@@ -203,9 +205,33 @@ def makeBooking(date,time, name):
     pass
 
 def billing():
-    pass
+    while True:
+        try:
+            print("=======================================")
+            print("수납 페이지에 접속하셨습니다.")
+            print("=======================================")
+            print()
+            p=Patient()
+            name=input("수납을 원하시는 환자의 이름을 입력하세요.\n")
+            p.findByName(name)
+            pre=Prescription()
+            prescription = pre.findByName(name)
+            count = len(prescription["medicine"].split(","))
+            print("***************************************")
+            print(f"해당 환자의 결제 금액은 {5000*count}원 입니다.")
+            print("***************************************")
+            ok=input("결재가 완료되었으면 아무 문자나 입력해주세요. 메인메뉴로 돌아갑니다.\n")
+            mainMenu()
+        except UnexistPatient as e:
+            print(e)
+        except UnexistPrescription as e:
+            print(e)
+        except:
+            print("아직 구현이 완료되지 않았습니다.")
+            ok=input("확인했으면 아무 문자나 입력해주세요. 메인메뉴로 돌아갑니다.\n")
 
-def medicalChart():
+
+def medicalReport():
     pass
 
 
