@@ -22,12 +22,15 @@ def main():
             print("=======================================")
             print("**로그인을 원하시면 \"1\"을 입력하시고, 회원가입을 원하시면 \"2\"을 입력하세요.**\n")
 
-            sign = input("1. 로그인\n2. 회원가입\n")
+            sign = input("1. 로그인\n2. 회원가입\n3. 서비스 종료\n")
             
             if(sign=="1"):
                 logIn()
             elif(sign=="2"):
                 register()
+            elif(sign=="3"):
+                print("서비스를 종료합니다. 이용해주셔서 감사합니다.")
+                break
             else:
                 raise UnexepectedNum()
 
