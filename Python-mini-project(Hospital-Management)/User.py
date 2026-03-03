@@ -20,11 +20,7 @@ class User:
     # } 이런식으로 User.json파일에 객체를 추가하는 함수
         pass
 
-    def findDoctor(self, field):
-        ## 해당 filed(분야)의 의사 즉, author가 "super"이며 field가 매개변수값과 같은 사람을 User.json에서 찾아서 이름을 return하는 함수
-        ##만약 찾을 수 없으면 UnexistDoctor(예외)를 raise
-        pass
-
+    
     
 
     

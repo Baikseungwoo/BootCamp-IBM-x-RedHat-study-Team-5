@@ -150,8 +150,7 @@ def checkIn():
             field = input("환자가 필요한 진료 분야를 입력하세요.\n \"0\"/\"1\"/\"2\"/\"3\" (없음/외과/내과/정신과)\n")
             if field not in ["0", "1", "2", "3"]:
                 raise UnexepectedNum()
-            u = User()
-            doctor=u.findDoctor(field)
+            doctor=findDoctor(field)
             print(f"해당환자를 {doctor}선생님의 진료실로 배정 완료하였습니다.")
             ok=input("확인하셨으면 아무 문자나 입력해주세요. 메인메뉴로 돌아갑니다.\n")
             mainMenu()
@@ -162,6 +161,12 @@ def checkIn():
             print(e)
         except UnexistDoctor as e:
             print(e)
+
+def findDoctor(field):
+        ## 해당 filed(분야)의 의사 즉, author가 "super"이며 field가 매개변수값과 같은 사람을 User.json에서 찾아서 이름을 return하는 함수
+        ##만약 찾을 수 없으면 UnexistDoctor(예외)를 raise
+        pass
+
 
 def booking():
     while True:
@@ -182,6 +187,7 @@ def booking():
                 makeBooking(date,time,name)
                 print("예약이 완료되었습니다.")
             ok=input("확인하셨으면 아무 문자나 입력해주세요. 메인메뉴로 돌아갑니다.\n")
+            mainMenu()
         except UnexepectedNum as e:
             print(e)
         except UnexepectedTime as e:
@@ -204,7 +210,7 @@ def medicalChart():
 
 
 
-
+## 메인 실행문
 books=[]
 
 for i in range(1,32):
