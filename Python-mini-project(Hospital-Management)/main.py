@@ -234,6 +234,7 @@ def billing():
         except:
             print("아직 구현이 완료되지 않았습니다.")
             ok=input("확인했으면 아무 문자나 입력해주세요. 메인메뉴로 돌아갑니다.\n")
+            mainMenu()
 
 
 def medicalReport():
