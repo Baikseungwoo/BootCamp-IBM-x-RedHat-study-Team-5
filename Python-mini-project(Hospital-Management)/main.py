@@ -4,9 +4,14 @@ from Exception import UnexistPatient
 from Exception import UnexistDoctor
 from Exception import UnexepectedTime
 from Exception import UnexistPrescription
+from Exception import UnexistMedicalChart
+
+from datetime import datetime
+
 from User import User
 from Patient import Patient
 from Prescription import Prescription
+from MedicalChart import MedicalChart
 
 
 def main():
@@ -104,7 +109,7 @@ def patient():
             print("환자정보 페이지에 접속하셨습니다.")
             print("=======================================")
             print("**접속을 원하는 서비스의 메뉴번호를 입력하세요.**\n")
-            n=input("1. 환자 정보 조회\n2. 신규환자 등록\n3. 뒤로가기\n")
+            n=input("1. 환자 정보 조회\n2. 신규환자 등록\n3. 뒤로가기(메인메뉴)\n")
             if n not in ["1", "2", "3"]:
                 raise UnexepectedNum()
             p = Patient()
@@ -152,7 +157,7 @@ def checkIn():
             field = input("환자가 필요한 진료 분야를 입력하세요.\n \"0\"/\"1\"/\"2\"/\"3\" (없음/외과/내과/정신과)\n")
             if field not in ["0", "1", "2", "3"]:
                 raise UnexepectedNum()
-            doctor=findDoctor(field)
+            doctor=findDoctorByfield(field)
             print(f"해당환자를 {doctor}선생님의 진료실로 배정 완료하였습니다.")
             ok=input("확인하셨으면 아무 문자나 입력해주세요. 메인메뉴로 돌아갑니다.\n")
             mainMenu()
@@ -164,7 +169,7 @@ def checkIn():
         except UnexistDoctor as e:
             print(e)
 
-def findDoctor(field):
+def findDoctorByfield(field):
         ## 해당 filed(분야)의 의사 즉, author가 "super"이며 field가 매개변수값과 같은 사람을 User.json에서 찾아서 이름을 return하는 함수
         ##만약 찾을 수 없으면 UnexistDoctor(예외)를 raise
         pass
@@ -232,7 +237,75 @@ def billing():
 
 
 def medicalReport():
-    pass
+    
+    while True:
+        try:
+            dname=input("접속하려는 의사의 이름을 입력하세요")
+            password=input("본인의 비밀번호를 입력하세요")
+            u=User(dname,password)
+            u.doctorLogin()
+            print("************의사 인증을 완료하였습니다.***********")
+            print("=======================================")
+            print("환자정보 페이지에 접속하셨습니다.")
+            print("=======================================")
+            print("**접속을 원하는 서비스의 메뉴번호를 입력하세요.**\n")
+            n=input("1. 진료기록 작성\n2. 처방전 작성\n3. 진료기록 조회\n4. 뒤로가기(메인메뉴)\n")
+            if n not in ["1", "2", "3","4"]:
+                raise UnexepectedNum()
+            p = Patient()
+            if(n=="1"):
+                print("=======================================")
+                print("진료기록 작성 페이지에 접속하셨습니다.")
+                print("=======================================")
+                print()
+                name=input("환자의 이름을 입력하세요.\n")
+                p.findByName(name)
+                medi=MedicalChart()
+                today = datetime.today().strftime("%Y-%m-%d")
+                disease =input("환자의 병명을 입력해 주세요.\n")
+                medi.chartRegister(name,today,disease)
+                ok=input("환자의 진료기록이 등록완료되었습니다!\n확인하셨으면 아무 문자나 입력해주세요.(메인메뉴로 돌아갑니다.)")
+                mainMenu()
+            elif(n=="2"):
+                print("=======================================")
+                print("처방전 등록 페이지에 접속하셨습니다.")
+                print("=======================================")
+                print()
+                name=input("환자의 이름을 입력하세요.\n")
+                p.findByName(name)
+                disease=input("환자의 질병명을 입력하세요.\n")
+                medicine=input("환자에게 처방할 약들을 입력하세요.\n처방할 약이 여러개인 경우 쉽표(\",\")를 통해서 구분해 입력해주세요.\n")
+                pre = Prescription()
+                pre.prescriptionRegister(name,disease,medicine)
+                print("****처방전 등록이 완료되었습니다.***")
+                ok=input("확인하셨으면 아무 문자나 입력해주세요.(메인메뉴로 돌아갑니다.)")
+                mainMenu()
+            elif (n=="3"):
+                print("=======================================")
+                print("진료기록 조회 페이지에 접속하셨습니다.")
+                print("=======================================")
+                print()
+                name=input("환자의 이름을 입력하세요.\n")
+                p.findByName(name)
+                medi=MedicalChart()
+                chart=medi.findByName(name)
+                for i in chart:
+                    print(i)
+                ok=input("확인하셨으면 아무 문자나 입력해주세요.(메인메뉴로 돌아갑니다.)")
+                mainMenu()
+            elif(n=="4"):
+                mainMenu()
+        except UnexepectedNum as e:
+            print(e)
+        except UnexistDoctor as e:
+            print(e)
+        except UnexistPatient as e:
+            print(e)
+        except UnexistMedicalChart as e:
+            print(e)
+        except:
+            print("아직 구현이 완료되지 않았습니다.")
+            ok=input("확인했으면 아무 문자나 입력해주세요. 메인메뉴로 돌아갑니다.\n")
 
 
 

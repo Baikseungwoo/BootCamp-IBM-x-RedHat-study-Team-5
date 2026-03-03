@@ -10,6 +10,10 @@ class UnexistPrescription(Exception):
     def __init__(self):
         super().__init__('해당 환자의 처방전이 존재하지 않습니다.')
 
+class UnexistMedicalChart(Exception):
+    def __init__(self):
+        super().__init__('해당 환자의 진료기록이 존재하지 않습니다.')
+
 
 class UnexistUser(Exception):
     def __init__(self):
@@ -21,4 +25,4 @@ class UnexistPatient(Exception):
 
 class UnexistDoctor(Exception):
     def __init__(self):
-        super().__init__('현재 해당분야의 의사를 찾을 수 없습니다. 죄송합니다.')
+        super().__init__('현재 해당하는 의사를 찾을 수 없습니다. 죄송합니다.')

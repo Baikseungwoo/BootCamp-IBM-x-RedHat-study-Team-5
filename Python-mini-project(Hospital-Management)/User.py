@@ -20,7 +20,11 @@ class User:
     # } 이런식으로 User.json파일에 객체를 추가하는 함수
         pass
 
-    
+    def doctorLogin(self):
+    ##이름을 가지고 User.json에서 해당인물을 찾아서 의사인지 아닌지 판단하고 없으면 UnexistDoctor raise
+    ##비밀번호를 통해서 json파일에 적힌 pasword와 일치하는지 확인후 없으면 UnexistDoctor raise
+    ##최종적으로 만족하는 인물을 확인했으면 True를 반환
+        return True
     
 
     
