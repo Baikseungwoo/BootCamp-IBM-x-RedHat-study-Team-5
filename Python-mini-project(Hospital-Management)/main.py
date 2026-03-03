@@ -240,8 +240,8 @@ def medicalReport():
     
     while True:
         try:
-            dname=input("접속하려는 의사의 이름을 입력하세요")
-            password=input("본인의 비밀번호를 입력하세요")
+            dname=input("접속하려는 의사의 이름을 입력하세요\n")
+            password=input("본인의 비밀번호를 입력하세요\n")
             u=User(dname,password)
             u.doctorLogin()
             print("************의사 인증을 완료하였습니다.***********")
@@ -306,6 +306,7 @@ def medicalReport():
         except:
             print("아직 구현이 완료되지 않았습니다.")
             ok=input("확인했으면 아무 문자나 입력해주세요. 메인메뉴로 돌아갑니다.\n")
+            mainMenu()
 
 
 
