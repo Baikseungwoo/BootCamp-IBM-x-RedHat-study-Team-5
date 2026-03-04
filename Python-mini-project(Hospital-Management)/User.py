@@ -2,7 +2,7 @@ from Exception import UnexistUser
 from Exception import UnexistDoctor
 import json
 
-add='./User.json'
+add='./BootCamp-IBM-x-RedHat-study-Team-5/Python-mini-project(Hospital-Management)/User.json'
 
 class User:
     
