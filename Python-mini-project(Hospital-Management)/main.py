@@ -179,7 +179,7 @@ def findDoctorByfield(field):
             if user["author"] == "super" and user["field"] == field:
                 return user["name"]
             else:
-                raise UnexistDoctor("해당 분야의 의사가 존재하지 않음")
+                raise UnexistDoctor()
 
 
 def booking():
