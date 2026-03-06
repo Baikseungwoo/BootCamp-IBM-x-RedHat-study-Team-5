@@ -26,7 +26,6 @@ class MedicalChart:
             json.dump(data,f,ensure_ascii=False,indent=2)
         
         
-        pass
 
     def findByName(self, name):
         ##name을 이용해서 MedicalChart.json 파일에서 해당 환자의 진료기록 딕셔너리를 찾아서 모두 리스트로 반환하는 함수
@@ -34,13 +33,12 @@ class MedicalChart:
 
         with open('MedicalChart.json','r',encoding='utf-8')as f:
             data1=json.load(f)
-        match=[]
-        for i in data1:
-            if i['name']==name:
-                match.append(i)
-            if len(match)==0:
-                raise UnexistMedicalChart()            
+            match=[]
+            for i in data1:
+                if i['name']==name:
+                    match.append(i)
+                if len(match)==0:
+                    raise UnexistMedicalChart()            
       
-        return match
+            return match
                     
-        pass

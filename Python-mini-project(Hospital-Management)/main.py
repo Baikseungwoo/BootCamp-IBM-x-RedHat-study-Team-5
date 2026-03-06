@@ -5,7 +5,7 @@ from Exception import UnexistDoctor
 from Exception import UnexepectedTime
 from Exception import UnexistPrescription
 from Exception import UnexistMedicalChart
-
+import json
 from datetime import datetime
 
 from User import User
@@ -84,7 +84,7 @@ def mainMenu():
             print("메인메뉴 페이지에 접속하셨습니다.")
             print("=======================================")
             print("**접속을 원하는 서비스의 메뉴번호를 입력하세요.**\n")
-            n=input("1. 환자 정보\n2. 진료접수\n3. 예약\n4.수납\n5. 진료기록/처방전(의사만 접근가능)\n6. 로그아웃(처음부터 다시 시작)\n")
+            n=input("1. 환자 정보\n2. 진료접수\n3. 예약\n4. 수납\n5. 진료기록/처방전(의사만 접근가능)\n6. 로그아웃(처음부터 다시 시작)\n")
             if(n=="1"):
                 patient()
             elif(n=="2"):
@@ -173,9 +173,13 @@ def checkIn():
             print(e)
 
 def findDoctorByfield(field):
-        ## 해당 filed(분야)의 의사 즉, author가 "super"이며 field가 매개변수값과 같은 사람을 User.json에서 찾아서 이름을 return하는 함수
-        ##만약 찾을 수 없으면 UnexistDoctor(예외)를 raise
-        pass
+    with open("User.json", "r", encoding="utf-8") as f:
+        users = json.load(f)
+        for user in users:
+            if user["author"] == "super" and user["field"] == field:
+                return user["name"]
+            else:
+                raise UnexistDoctor("해당 분야의 의사가 존재하지 않음")
 
 
 def booking():
@@ -203,14 +207,23 @@ def booking():
         except UnexepectedTime as e:
             print(e)
 
+
 def findBookingValid(date, time):
-    ##books라는 리스트에서 date에 해당되는 인덱스의 딕셔너리 안에 time(오전/오후)에 해당되는 value가 빈 문자열인지 확인하는 함수
-    ##가능하면 가능하다고 print하고 True반환, 만약에 값이 이미 있는 상태면 불가능하다고 print하고 False 반환
-    pass
+    if books[date-1][time] == "":
+        print("예약 가능")
+        return True
+    else:
+        print("예약 불가능")
+        return False
 
 def makeBooking(date,time, name):
     ##books라는 리스트속 해당되는 딕셔너리안에 이름을넣어서 예약추가하는 함수
-    pass
+    books[date-1][time] = name
+    yes = findBookingValid(5, "오전")
+
+    if yes:
+        makeBooking(5, "오전", "백승우")
+
 
 def billing():
     while True:
